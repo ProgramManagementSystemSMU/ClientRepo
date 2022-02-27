@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "clientmobile",
-    "slug": "clientmobile",
+    "name": "booking_system",
+    "slug": "booking_system",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
