@@ -1,14 +1,15 @@
 import React from 'react';
 import { Animated, View,Image } from 'react-native';
-import Accept from './Accept.png';
+import Accept from '../assets/Accept.png';
 import Buttons from './Buttons';
 
-export default function Confirmation(){
+export default function Confirmation({navigation}){
     return(
         <View style={{
             flexDirection: 'column',
             alignItems: 'center',
-            height: '100%'
+            height: '100%',
+            backgroundColor:'#FAFAFA'
         }}>
             <Image source={Accept} style={{
              flex: 1,
@@ -23,12 +24,12 @@ export default function Confirmation(){
             <Animated.Text style={{
                         fontSize: 32,
                         fontWeight: 'bold',
-                        color: 'black',
+                        color: '#22292F',
                         fontFamily:'sans-serif-thin',
                         position: 'absolute',
                         height:320,
                         marginTop:250
-            }}>Booking Complete</Animated.Text>
+            }}>Booking Confirmed</Animated.Text>
             <Animated.Text style={{
                         fontSize: 16,
                         fontWeight: 'normal',
@@ -37,9 +38,9 @@ export default function Confirmation(){
                         position: 'absolute',
                         height:300,
                         marginTop:320
-            }}>Your booking has been {"\n"} successfully confirmed </Animated.Text>
+            }}> You'll get an email along with {"\n"}   your booking confirmation </Animated.Text>
         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end',alignItems:'center'}}>
-            <Buttons btn_text={"Back to Home"}/>
+            <Buttons btn_text={"Back to Home"} on_press={() => navigation.navigate('Home')}/>
         </View>
         </View>  
     );

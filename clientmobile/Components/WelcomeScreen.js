@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { Animated,View,Image,TouchableOpacity,Text} from 'react-native';
+import { Animated,View,Image} from 'react-native';
 import Buttons from './Buttons';
-// Welcome's Image
-import Schedule from './Schedule.png';
 
-export default function WelcomeScreen(){
+// Welcome's Image
+import Schedule from '../assets/Schedule.png';
+
+export default function WelcomeScreen({ navigation }){
 
     return(
         <View style={{
@@ -30,7 +31,10 @@ export default function WelcomeScreen(){
                         height:450
             }}>Welcome to our Booking System</Animated.Text>
         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end',alignItems:'center'}}>
-            <Buttons btn_text={"Get Started"}/>
+            <Buttons 
+            btn_text={"Get Started"}
+            on_press={() => navigation.navigate('Home')}
+            /> 
         </View>
         </View>  
         

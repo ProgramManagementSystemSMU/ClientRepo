@@ -55,10 +55,12 @@ export default function SplashScreen(){
                 
             ])
             .start();
+            
         },650);
         
         
     },[]);
+    
     return(
 
         <View style={{
@@ -106,7 +108,9 @@ export default function SplashScreen(){
                 zIndex: 0,
                 
             }}>
-              <WelcomeScreen></WelcomeScreen>
+                
+            <WelcomeScreen></WelcomeScreen>  
+
             </Animated.View>
             
         </View>

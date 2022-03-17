@@ -1,14 +1,15 @@
 import React from 'react';
 import { Animated, View,Image } from 'react-native';
-import Failed from './Failed.png';
+import Failed from '../assets/Failed.png';
 import Buttons from './Buttons';
 
-export default function ErrorScreen(){
+export default function ErrorScreen({navigation}){
     return(
         <View style={{
             flexDirection: 'column',
             alignItems: 'center',
-            height: '100%'
+            height: '100%', 
+            backgroundColor:'#FAFAFA'
         }}>
             <Image source={Failed} style={{
              flex: 1,
@@ -23,7 +24,7 @@ export default function ErrorScreen(){
             <Animated.Text style={{
                         fontSize: 32,
                         fontWeight: 'bold',
-                        color: 'black',
+                        color: '#22292F',
                         fontFamily:'sans-serif-thin',
                         position: 'absolute',
                         height:320,
@@ -39,7 +40,7 @@ export default function ErrorScreen(){
                         marginTop:320
             }}>Something went wrong. {"\n"}    Please try it again. </Animated.Text>
         <View style={{flex:1,flexDirection:'column',justifyContent:'flex-end',alignItems:'center'}}>
-            <Buttons btn_text={"Try Again"}/>
+            <Buttons btn_text={"Try Again"} on_press={() => navigation.navigate('Form')}/>
         </View>
         </View>  
     );
