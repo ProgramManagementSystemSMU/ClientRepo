@@ -2,7 +2,9 @@ import React, { useEffect, useRef }  from 'react';
 import { Animated, View, Image, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Logo from './Logo.png';
+
 import WelcomeScreen from './WelcomeScreen';
+
 
 export default function SplashScreen(){
     
@@ -62,7 +64,7 @@ export default function SplashScreen(){
     },[]);
     
     return(
-
+        
         <View style={{
             position: 'absolute',
             top: 0,
@@ -88,7 +90,7 @@ export default function SplashScreen(){
                     width: 250,
                     height: 250,
                     resizeMode: 'cover',
-                    position:'center',
+                    position:'absolute',
                     marginBottom: 20,
                     transform:[
                        {translateX: moveLogo.x},
@@ -114,5 +116,6 @@ export default function SplashScreen(){
             </Animated.View>
             
         </View>
+        
     );
 }

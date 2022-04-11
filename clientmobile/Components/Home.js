@@ -7,12 +7,12 @@ import close from '../assets/close.png';
 import home from '../assets/home.png';
 import Box from '../assets/Box.png';
 import room from '../assets/room.png';
-import Buttons from './Buttons';
+
 
 
 export default function App({navigation}) {
   const [currentTab, setCurrentTab] = useState("Home");
-  // To get the curretn Status of menu ...
+  // To get the current Status of menu ...
   const [showMenu, setShowMenu] = useState(false);
 
   // Animated Properties...
@@ -24,7 +24,7 @@ export default function App({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
-
+      <StatusBar style="dark" />
       <View style={{ justifyContent: 'flex-start', padding: 15 }}>
 
         <View style={{ flexGrow: 1, marginTop: 50 }}>
@@ -33,8 +33,7 @@ export default function App({navigation}) {
           }
 
           {TabButton(currentTab, setCurrentTab, "Home", home)}
-          {TabButton(currentTab, setCurrentTab, "Box Booking", Box)}
-          {TabButton(currentTab, setCurrentTab, "Classroom Booking",room)}
+          
 
         </View>
 
@@ -66,13 +65,13 @@ export default function App({navigation}) {
           transform: [{
             translateY: closeButtonOffset
           }] 
-        }}>
+        }} >
           
           <TouchableOpacity onPress={() => {
             // Do Actions Here....
             // Scaling the view...
             Animated.timing(scaleValue, {
-              toValue: showMenu ? 1 : 1,
+              toValue: showMenu ? 1 : 0.88,
               duration: 300,
               useNativeDriver: true
             })
@@ -125,12 +124,16 @@ export default function App({navigation}) {
             marginLeft:30,
             flex:0,
             position:'absolute'
-          }}>Choose your booking option</Text>
+          }}>    Choose your booking  {'\n'}                 option</Text>
 
-          <View style={{flex:1,height:'100%',flexDirection:'column',marginTop:210,marginRight:15,padding:10}}>
-            <Buttons btn_text={"Classroom"} on_press={() => navigation.navigate('Form')}/>
-            <Buttons btn_text={"Box"} on_press={() => navigation.navigate('Form')}/>          
-          </View> 
+          <TouchableOpacity onPress={() => {navigation.navigate('Form')}} 
+            style={styles.button}>
+         <Text style={{fontSize:20,letterSpacing:0.75,textAlign:'center',
+          fontFamily:'monospace',color:'white',marginBottom:-8,marginTop:-15}}>Booking Form</Text></TouchableOpacity>         
+          <TouchableOpacity onPress={() => {navigation.navigate('Login')}} 
+            style={styles.button1}>
+         <Text style={{fontSize:20,letterSpacing:0.75,textAlign:'center',
+          fontFamily:'monospace',color:'white',marginBottom:-8,marginTop:-15}}>Chat System</Text></TouchableOpacity>
         </Animated.View>
 
       </Animated.View>
@@ -176,8 +179,34 @@ const TabButton = (currentTab, setCurrentTab, title, image) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#FFFF',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  button: {
+    flex:1,flexDirection:'column',
+    marginTop:210,
+    marginRight:15,
+    padding:10,
+    backgroundColor:'#40B5AD',
+    borderRadius:25,
+    width:'75%',
+    height:'50%',
+    paddingVertical: 21,
+    paddingHorizontal: 45,
+    marginLeft:56,
+    justifyContent:'center',
+    marginBottom:62
+  },
+  button1 : {
+    padding:10,
+    marginLeft:56,
+    justifyContent:'center',
+    backgroundColor:'#40B5AD',
+    borderRadius:25,
+    width:'75%',
+    height:'10%',flexDirection:'column',
+    paddingVertical: 21,
+    paddingHorizontal: 40,
+  }
 });

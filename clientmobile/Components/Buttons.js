@@ -14,7 +14,7 @@ const Buttons = ({btn_text,on_press}) => {
             paddingVertical: 10,
             paddingHorizontal: 45,
             marginLeft:20,
-            marginBottom:100,}}
+            marginBottom:60}}
             onPress={on_press}
         > 
             <Text style={{fontSize:20,letterSpacing:0.75,textAlign:'center',
