@@ -21,15 +21,15 @@ export default function App() {
   return (
     <SafeAreaProvider>
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName='Form'>
+      <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName='Home'>
         
         <Stack.Screen name="Splash" component={SplashScreen} /> 
         <Stack.Screen name="Welcome" component={WelcomeScreen}/>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Form" component={Form} />
-        <Stack.Screen  name="Login" component={LoginScreen} />
+        {/*<Stack.Screen  name="Login" component={LoginScreen} />
         <Stack.Screen  name="Register" component={RegisterScreen} />
-        <Stack.Screen  name="Chat" component={ChatScreen} />
+  <Stack.Screen  name="Chat" component={ChatScreen} />*/}
         <Stack.Screen name="Confirmation" component={Confirmation} />
         <Stack.Screen name="Error" component={ErrorScreen} />
         

@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import {View,StyleSheet} from 'react-native';
 import {Input,Button} from 'react-native-elements';
 import {auth} from '../firebase';
@@ -68,4 +68,4 @@ const RegisterScreen = ({navigation}) => {
 
 }
 
-export default RegisterScreen
+export default RegisterScreen*/

@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react';
+/*import React ,{useState,useEffect} from 'react';
 import {View} from 'react-native';
 import {Input,Button} from 'react-native-elements';
 import {auth} from '../firebase';
@@ -49,4 +49,4 @@ const LoginScreen = ({navigation}) => {
     )    
     
 }
-export default LoginScreen
+export default LoginScreen*/

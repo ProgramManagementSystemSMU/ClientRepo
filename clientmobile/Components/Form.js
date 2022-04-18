@@ -7,7 +7,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Keyboard} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { set } from 'react-native-reanimated';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 
 const isValidObjField = (obj) => {
@@ -85,6 +85,7 @@ const handle_confirm = () => {
     }
     /*else if (!isValidForm()){navigation.navigate('Error');}*/
   }
+  
   return (
     
     <View style={styles.container} >
@@ -94,7 +95,7 @@ const handle_confirm = () => {
         height: 50,
         top:40,
         backgroundColor:'#FAF9F6',
-        right:100
+        left:100
 
       }}></Image>
       <Text style={styles.formLabel} > Booking Form </Text>
@@ -119,7 +120,7 @@ const handle_confirm = () => {
           placeholder="Duration" style={styles.inputStyle} keyboardType='numeric'/>
           
         </KeyboardAwareScrollView>
-        <View style={{flex:1,borderRadius:50,height:22,marginTop:5,paddingHorizontal: 10,marginRight:32}}>
+        <View style={{flex:1,borderRadius:50,height:22,marginTop:30,paddingHorizontal: 10,marginRight:32}}>
             <Buttons btn_text={"Submit"} on_press={submitForm}/>
         </View> 
         <View style={{flex:1,alignItems: 'center',justifyContent:'center'}}>
@@ -130,7 +131,7 @@ const handle_confirm = () => {
           format="DD-MM-YYYY"
           onConfirm={handleConfirm}
           onCancel={hideDatePicker}
-          onDateChange={(date)=> {setDate(date);}}
+          onDateChange={(date)=> {console.log(date),setDate(date);}}
         />
         <DateTimePickerModal
         isVisible={isTimePickerVisible}
@@ -138,7 +139,19 @@ const handle_confirm = () => {
         onConfirm={handle_confirm}
         onCancel={hideTimePicker}
         />
+        <DropDownPicker
+          style={styles.inputStyle}
+          items={[
+              {label: 'Classroom', value: 'c'},
+              {label: 'Box', value: 'b'}
+          ]}
+          placeholder="Select Study Space"
+          defaultIndex={0}
+          containerStyle={{height: 260}}
+          onChangeItem={item => console.log(item.label, item.value)}
+        />
         </View>   
+        
       </View>
     
 

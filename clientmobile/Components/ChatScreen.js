@@ -1,4 +1,4 @@
-import React,{useState,useCallback,useEffect, useLayoutEffect} from 'react';
+/*import React,{useState,useCallback,useEffect, useLayoutEffect} from 'react';
 import {View,Text} from 'react-native';
 import { Avatar, GiftedChat } from 'react-native-gifted-chat';
 import {AntDesign} from '@expo/vector-icons';
@@ -6,7 +6,7 @@ import { auth, db } from '../firebase';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ChatScreen = ({navigation}) => {
-    const [messages,setMessages]=useState([]);
+    const [messages,setMessages]=useState([]);*/
     /*useLayoutEffect(()=>{
         navigation.setOptions({
             headerLeft:()=>(
@@ -46,7 +46,7 @@ const ChatScreen = ({navigation}) => {
         ])
     },[])*/
 
-    useLayoutEffect(()=>{
+    /*useLayoutEffect(()=>{
         const unsubscribe = db.collection('chats').orderBy('createdAt','desc').onSnapshot
         (snapshot => setMessages(
             snapshot.docs.map(doc => ({
@@ -96,4 +96,4 @@ const ChatScreen = ({navigation}) => {
         
     )
 }
-export default ChatScreen
+export default ChatScreen*/
