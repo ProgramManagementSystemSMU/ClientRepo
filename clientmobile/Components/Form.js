@@ -79,6 +79,7 @@ const handle_confirm = () => {
     return true;
   };
   const navigation = useNavigation();
+  const [open, setOpen] = useState(false);
   const submitForm = () => {
     if(isValidForm()){
       navigation.navigate('Confirmation');
@@ -140,11 +141,13 @@ const handle_confirm = () => {
         onCancel={hideTimePicker}
         />
         <DropDownPicker
+          open={open}
           style={styles.inputStyle}
           items={[
               {label: 'Classroom', value: 'c'},
               {label: 'Box', value: 'b'}
           ]}
+          setOpen={setOpen}
           placeholder="Select Study Space"
           defaultIndex={0}
           containerStyle={{height: 260}}
