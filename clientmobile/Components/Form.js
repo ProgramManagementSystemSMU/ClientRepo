@@ -20,10 +20,10 @@ const updateError = (error,stateUpdater) => {
   },2500);
 }
 
-const isValidEmail = (value) => {
-  const regx =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+/*const isValidEmail = (value) => {
+  const regx =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
   return regx.test(value)
-}
+}*/
 
 const isValidId = (value) => {
   const regx = /^(?=.*[a-z])[a-z0-9]{8,20}$/gm ;
@@ -34,6 +34,7 @@ const App = () => {
 const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 const [date,setDate] = useState(new Date());
+
 
 const showDatePicker = () => {
   setDatePickerVisibility(true);
@@ -49,12 +50,11 @@ const hideTimePicker = () => {
   setTimePickerVisibility(false);
 }
 
-const handleConfirm = (date) => {
-  
+const handleDateConfirm = (selectedDate) => {
+  setDate(selectedDate);
   hideDatePicker();
-    
 };
-const handle_confirm = () => {
+const handleTimeConfirm = () => {
   hideTimePicker();
 }
 
@@ -74,7 +74,7 @@ const handle_confirm = () => {
   const isValidForm = () => {
     if(!isValidObjField(userInfo)) return updateError('All fields are required!',setError)
     if(!fullName.trim() || fullName.length < 3) return updateError('Invalid name!',setError)
-    if(!isValidEmail(email)) return updateError('Invalid email!',setError)
+    /*if(!isValidEmail(email)) return updateError('Invalid email!',setError)*/
     if(!isValidId(Id)) return updateError('Invalid ID!',setError)
     return true;
   };
@@ -82,11 +82,15 @@ const handle_confirm = () => {
   const [open, setOpen] = useState(false);
   const submitForm = () => {
     if(isValidForm()){
-      navigation.navigate('Confirmation');
+      navigation.navigate('StudySpace');
     }
-    /*else if (!isValidForm()){navigation.navigate('Error');}*/
+    
   }
-  
+  const [items, setItems] = useState([
+    {label: 'Classroom', value: 'classroom'},
+    {label: 'Box', value: 'box'}
+])
+const [value, setValue] = useState(null);
   return (
     
     <View style={styles.container} >
@@ -96,11 +100,23 @@ const handle_confirm = () => {
         height: 50,
         top:40,
         backgroundColor:'#FAF9F6',
-        left:100
+        right:100
 
       }}></Image>
       <Text style={styles.formLabel} > Booking Form </Text>
       {error ? <Text style={{color:'red',fontSize:18,textAlign:'center'}}>{error}</Text> : null}
+      <DropDownPicker
+          open={open}
+          setValue={setValue}
+          value={value}
+          style={styles.inputStyle}
+          items={items}
+          setOpen={setOpen}
+          placeholder="Select Study Space"
+          defaultIndex={0}
+          setItems={setItems}
+          containerStyle={{height:10,marginBottom:60,marginLeft:3,marginTop:-5,width:'83.6%'}}
+        /> 
       <KeyboardAwareScrollView
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={false}
@@ -111,9 +127,9 @@ const handle_confirm = () => {
           value={Id} onChangeText={(value)=> handleOnChangeText(value,'Id')} placeholder="ID" style={styles.inputStyle} />
         <TextInput 
           value={email} onChangeText={(value)=> handleOnChangeText(value,'email')}  placeholder="Email" style={styles.inputStyle} />
-          
+        
           <TextInput 
-           value={date} placeholder="Date" style={styles.inputStyle} onChangeText={(val)=> setDate(val)} onFocus = {() => {showDatePicker(), Keyboard.dismiss()}}  />
+            placeholder="Date" style={styles.inputStyle} /*onChangeText={(date)=> setDate(date)}*/ onFocus = {() => {showDatePicker(), Keyboard.dismiss()}}  />
          
           <TextInput 
           placeholder="Time" style={styles.inputStyle} onFocus = {() => {showTimePicker(), Keyboard.dismiss()}}/>
@@ -121,38 +137,28 @@ const handle_confirm = () => {
           placeholder="Duration" style={styles.inputStyle} keyboardType='numeric'/>
           
         </KeyboardAwareScrollView>
-        <View style={{flex:1,borderRadius:50,height:22,marginTop:30,paddingHorizontal: 10,marginRight:32}}>
+        
+        <View style={{flex:1,borderRadius:50,height:20,marginTop:-8,paddingHorizontal: 10,marginRight:32}}>
             <Buttons btn_text={"Submit"} on_press={submitForm}/>
         </View> 
         <View style={{flex:1,alignItems: 'center',justifyContent:'center'}}>
         <DateTimePickerModal
           date={date}
+          setDate={setDate}
           isVisible={isDatePickerVisible}
-          mode={'single'}
+          mode='date'
           format="DD-MM-YYYY"
-          onConfirm={handleConfirm}
+          onConfirm={handleDateConfirm}
           onCancel={hideDatePicker}
-          onDateChange={(date)=> {console.log(date),setDate(date);}}
         />
         <DateTimePickerModal
         isVisible={isTimePickerVisible}
         mode="time"
-        onConfirm={handle_confirm}
+        onConfirm={handleTimeConfirm}
         onCancel={hideTimePicker}
         />
-        <DropDownPicker
-          open={open}
-          style={styles.inputStyle}
-          items={[
-              {label: 'Classroom', value: 'c'},
-              {label: 'Box', value: 'b'}
-          ]}
-          setOpen={setOpen}
-          placeholder="Select Study Space"
-          defaultIndex={0}
-          containerStyle={{height: 260}}
-          onChangeItem={item => console.log(item.label, item.value)}
-        />
+        
+        
         </View>   
         
       </View>
@@ -176,13 +182,13 @@ formLabel: {
   color: '#22292F',
   fontFamily:'sans-serif-thin',
   fontWeight: 'bold',
-  marginTop:50,
-  marginBottom:10
+  marginTop:40,
+  marginBottom:0
 },
 inputStyle: {
   marginTop: 20,
   width: 300,
-  height: 43,
+  height: 40,
   paddingHorizontal: 10,
   borderRadius: 18,
   fontFamily:'sans-serif-thin',

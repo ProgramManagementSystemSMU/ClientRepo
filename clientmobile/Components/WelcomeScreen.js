@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 // Welcome's Image
 import Schedule from '../assets/Schedule.png';
 
+
 export default function WelcomeScreen(){
     const navigation = useNavigation();
     return(
