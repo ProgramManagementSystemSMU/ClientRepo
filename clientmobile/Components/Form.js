@@ -20,10 +20,10 @@ const updateError = (error,stateUpdater) => {
   },2500);
 }
 
-/*const isValidEmail = (value) => {
+const isValidEmail = (value) => {
   const regx =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
   return regx.test(value)
-}*/
+}
 
 const isValidId = (value) => {
   const regx = /^(?=.*[a-z])[a-z0-9]{8,20}$/gm ;
@@ -74,7 +74,7 @@ const handleTimeConfirm = () => {
   const isValidForm = () => {
     if(!isValidObjField(userInfo)) return updateError('All fields are required!',setError)
     if(!fullName.trim() || fullName.length < 3) return updateError('Invalid name!',setError)
-    /*if(!isValidEmail(email)) return updateError('Invalid email!',setError)*/
+    if(!isValidEmail(email)) return updateError('Invalid email!',setError)
     if(!isValidId(Id)) return updateError('Invalid ID!',setError)
     return true;
   };

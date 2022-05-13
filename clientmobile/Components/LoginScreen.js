@@ -12,10 +12,10 @@ const updateError = (error,stateUpdater) => {
       stateUpdater('')
     },2500);
   }
-/*const isValidEmail = (value) => {
+const isValidEmail = (value) => {
     const regx = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     return regx.test(value)
-  }*/
+  }
 const isValidPassword = (value) => {
     const regx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/ ;
     return regx.test(value)
@@ -31,7 +31,7 @@ const LoginScreen = () => {
      
     const validate = () =>{
         
-        /*if(!isValidEmail(email)) return updateError('Invalid email!',setError)*/
+        if(!isValidEmail(email)) return updateError('Invalid email!',setError)
         if(!isValidPassword(password)) return updateError('Invalid password!',setError)
         return true;
     }
